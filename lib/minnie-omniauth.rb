@@ -1,7 +1,8 @@
 require "minnie-omniauth/version"
 
 module Minnie
-  module Omniauth
-    # Your code goes here...
+  module User
+    autoload :Omniauth, 'minnie-omniauth/user/omniauth'
   end
 end
+

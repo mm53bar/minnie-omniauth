@@ -1,0 +1,27 @@
+===============================================================================
+
+Congratulations! You've now set up Minnie for your OmniAuth authentication.
+
+If you're just starting out, here's a few more things you can do:
+
+  1. Set up your User model for OmniAuth.  Just add this to your User model:
+
+       class User < ActiveRecord::Base
+         include Minnie:Auth:OmniAuth
+
+  2. Ensure you have set up your provider's callback in config/routes.rb
+     For example:
+
+       match '/auth/:provider/callback', to: 'sessions#create'
+
+     Replace :provider with the name of the OmniAuth strategy you're using.
+
+  3. Update your user model to support the extra OmniAuth fields. Something
+     like this should work:
+
+       bundle exec rails g migration uid:string name:string username:string
+         access_token:string access_token_secret:string
+
+     Be careful with validations - only uid and name are required by
+     OmniAuth.
+

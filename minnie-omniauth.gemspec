@@ -4,12 +4,12 @@ require "minnie-omniauth/version"
 
 Gem::Specification.new do |s|
   s.name        = "minnie-omniauth"
-  s.version     = Minnie::Omniauth::VERSION
+  s.version     = Minnie::Ldap::VERSION
   s.authors     = ["Michael McClenaghan"]
   s.email       = ["mike@sideline.ca"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/mm53bar/minnie-omniauth"
+  s.summary     = %q{OmniAuth add-on to the simplest authentication possible}
+  s.description = %q{The simplest that OmniAuth authentication can get while still being useful}
 
   s.rubyforge_project = "minnie-omniauth"
 
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_runtime_dependency "minnie"
+  s.add_runtime_dependency "omniauth"
 end
