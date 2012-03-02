@@ -4,7 +4,7 @@ require "minnie-omniauth/version"
 
 Gem::Specification.new do |s|
   s.name        = "minnie-omniauth"
-  s.version     = Minnie::Ldap::VERSION
+  s.version     = Minnie::Omniauth::VERSION
   s.authors     = ["Michael McClenaghan"]
   s.email       = ["mike@sideline.ca"]
   s.homepage    = "https://github.com/mm53bar/minnie-omniauth"
