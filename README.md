@@ -1,30 +1,44 @@
-#Minnie-LDAP
+#Minnie-OmniAuth
 
-minnie-ldap is an authentication strategy for the [minnie gem](https://github.com/mm53bar/minnie).
+minnie-omniauth is an authentication strategy for the [minnie gem](https://github.com/mm53bar/minnie).
+
+###First Things First
+
+Make sure you know what you're doing with OmniAuth. Check out the Railscast at [http://railscasts.com/episodes/235-omniauth-part-1](http://railscasts.com/episodes/235-omniauth-part-1)
 
 ###Install
 
+All good with Omniauth.  OK - let's get going.
 
-Add minnie-ldap to your Gemfile
+Add minnie-omniauth to your Gemfile
 
-     gem 'minnie-ldap'
+     gem 'minnie-omniauth'
 
 Now follow the instructions for the minnie gem to run the generator.  Here's a hint:
 
      bundle exec rails generate minnie:install
 
-Now get rid of the generated lines in the user model so that your model looks like this:
+Then run the minnie-omniauth installer to get a sessions_controller that works with OmniAuth:
+
+     bundle exec rails generate minnie-omniauth:install
+
+Now generate a User model with this command:
+
+     bundle exec rails generate model User uid:string name:string username:string access_token:string access_token_secret:string
+
+And update the generated User model so that your model looks like this:
 
      class User < ActiveRecord::Base
-       include Minnie::User::Ldap
+       include Minnie::User::Omniauth
      end
 
-You'll also need to add a username to the migration.  Try this on the command line:
+Lastly, make sure you've set up your provider's callback in config/routes.rb:
 
-     bundle exec rails g migration AddUsernameToUsers username:string
+     match '/auth/:provider/callback', to: 'sessions#create'
 
-You're all done!  Now try to sign in to your app at [/signin](http://localhost:3000/signin).  Make
-sure you use a valid LDAP user.
+Replace :provider with the name of the OmniAuth strategy you're using.
+
+You're all done!  Now try to sign in to your app at [/signin](http://localhost:3000/signin).  
 
 ###Issues
 
