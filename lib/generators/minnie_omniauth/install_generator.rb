@@ -1,4 +1,4 @@
-module MinnieOmniAuth
+module MinnieOmniauth
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
