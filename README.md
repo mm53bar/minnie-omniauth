@@ -22,6 +22,12 @@ Then run the minnie-omniauth installer to get a sessions_controller that works w
 
      bundle exec rails generate minnie-omniauth:install
 
+Update your generated ApplicationController with the appropriate signin URL for your OmniAuth strategy. For example:
+
+     def sign_in_path
+       '/auth/twitter'
+     end
+
 Now generate a User model with this command:
 
      bundle exec rails generate model User uid:string name:string username:string access_token:string access_token_secret:string
@@ -35,8 +41,6 @@ And update the generated User model so that your model looks like this:
 Lastly, make sure you've set up your provider's callback in config/routes.rb:
 
      match '/auth/:provider/callback', to: 'sessions#create'
-
-Replace :provider with the name of the OmniAuth strategy you're using.
 
 You're all done!  Now try to sign in to your app at [/signin](http://localhost:3000/signin).  
 

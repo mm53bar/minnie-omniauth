@@ -23,3 +23,11 @@ If you're just starting out, here's a few more things you can do:
      Be careful with validations - only uid and name are in every
      OmniAuth strategy.
 
+  4. Add a custom sign_in_path to your sessions controller so that minnie
+     knows where to redirect unauthenticated users.  For example:
+
+       def sign_in_path
+         '/auth/twitter'
+       end
+       
+
