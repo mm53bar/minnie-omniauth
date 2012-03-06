@@ -1,7 +1,9 @@
 module Minnie
   module User
     module Omniauth
-      extend ActiveSupport::Concern    
+      def self.included(klass)
+        klass.extend ClassMethods
+      end
 
       module ClassMethods
         def authenticate(auth_hash)
@@ -21,14 +23,12 @@ module Minnie
         end         
       end    
 
-      module InstanceMethods
-        def assign_account_info(auth_hash)
-          self.uid                 = auth_hash['uid']
-          self.name                = auth_hash['info']['name']
-          self.username            = auth_hash['info']['nickname'] if auth_hash['info']['nickname']          
-          self.access_token        = auth_hash['credentials']['token']  if auth_hash['credentials']['token']
-          self.access_token_secret = auth_hash['credentials']['secret'] if auth_hash['credentials']['secret']                   
-        end 
+      def assign_account_info(auth_hash)
+        self.uid                 = auth_hash['uid']
+        self.name                = auth_hash['info']['name']
+        self.username            = auth_hash['info']['nickname'] if auth_hash['info']['nickname']          
+        self.access_token        = auth_hash['credentials']['token']  if auth_hash['credentials']['token']
+        self.access_token_secret = auth_hash['credentials']['secret'] if auth_hash['credentials']['secret']                   
       end 
     end
   end
